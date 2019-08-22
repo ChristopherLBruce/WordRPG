@@ -1,13 +1,13 @@
 import sys
 
-from .states.machine import FSM, STATES
-from . import gui
-from .gui.screen import Screen
+from .engine.state_machine.machine import Machine
+from .data.states import STATES
+from .engine.gui.screen import Screen
 
 
 
 def run(start='main_menu'):
-    game = FSM(states=STATES,start=start)
+    game = Machine(states=STATES,start=start)
 
     Screen.setup_terminal()
 
@@ -16,6 +16,3 @@ def run(start='main_menu'):
             break
 
         game.on_event('enter_state')
-
-    # If we're out of the main loop, then we're quitting the game
-    sys.exit()
